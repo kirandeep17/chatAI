@@ -12,6 +12,10 @@ const paths = {
   chat: 'M4 5h16v11H8l-4 4z',
   signOut: 'M15 4h4v16h-4M10 8l-4 4 4 4M6 12h10',
   box: 'M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3zM4 7.5l8 4.5 8-4.5M12 12v9',
+  menu: 'M4 6h16M4 12h16M4 18h16',
+  search: 'M11 4a7 7 0 1 0 0 14 7 7 0 0 0 0-14zM20 20l-4-4',
+  sparkle: 'M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3zM19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8L19 16z',
+  copy: 'M9 9h11v11H9zM5 15H4V4h11v1',
 } as const;
 
 export type IconName = keyof typeof paths;

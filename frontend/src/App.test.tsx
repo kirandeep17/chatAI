@@ -39,26 +39,29 @@ test('pick client, open a product, chat and see the streamed answer', async () =
   render(<App />);
   await signIn(user);
 
-  // Sidebar: client on top, user at the bottom, products in between.
+  // Rail: the client's products. List pane: client on top, user at the bottom.
   expect(await screen.findByRole('button', { name: /ACME Corp/ })).toBeInTheDocument();
   expect(screen.getByText('Jane Doe')).toBeInTheDocument();
   const products = screen.getByRole('navigation', { name: 'Products' });
 
-  // Expanding a product lists its existing chats.
-  await user.click(within(products).getByRole('button', { name: 'Expand Payments' }));
-  expect(await within(products).findByText('Q3 chargeback summary')).toBeInTheDocument();
-
-  // Selecting the product opens a new chat window for it.
-  await user.click(within(products).getByRole('button', { name: 'Payments' }));
+  // Selecting a product opens a new chat window for it and lists its existing chats.
+  await user.click(within(products).getByRole('link', { name: 'Payments' }));
   expect(await screen.findByText('What can I help you with?')).toBeInTheDocument();
+  const chats = screen.getByRole('region', { name: 'Payments chats' });
+  expect(await within(chats).findByText('Q3 chargeback summary')).toBeInTheDocument();
+
+  // Search filters the list.
+  await user.type(screen.getByLabelText('Search chats'), 'fee');
+  expect(within(chats).queryByText('Q3 chargeback summary')).not.toBeInTheDocument();
+  await user.clear(screen.getByLabelText('Search chats'));
 
   await user.type(screen.getByLabelText('Message'), 'How many chargebacks?{Enter}');
   expect(await screen.findByText('How many chargebacks?', { selector: '.msg__bubble' })).toBeInTheDocument();
   expect(await screen.findByText(/mocked response/, {}, { timeout: 5000 })).toBeInTheDocument();
   expect(await screen.findByText('[1] Product runbook')).toBeInTheDocument();
 
-  // The new chat shows up under the product with its title from the first message.
-  expect(await within(products).findByText('How many chargebacks?')).toBeInTheDocument();
+  // The new chat shows up in the product's list with its title from the first message.
+  expect(await within(chats).findByText('How many chargebacks?')).toBeInTheDocument();
 });
 
 test('switching client changes the product list', async () => {

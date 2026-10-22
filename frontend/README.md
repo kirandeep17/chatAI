@@ -55,15 +55,17 @@ src/
 ├── api/          # REST client, types (mirror docs §6), SSE stream parser
 ├── auth/         # bearer token provider (placeholder until OIDC login)
 ├── hooks/        # TanStack Query hooks, chat streaming state
-├── components/   # Sidebar (ClientSwitcher, ProductList, UserCard), ChatView, Composer, MessageList
+├── components/   # Layout (NavRail + ChatListPane: ClientSwitcher, ConversationList, UserCard), ChatView, Composer, MessageList
 ├── mocks/        # MSW handlers + seed data (entitlements, conversations, streamed answers)
-└── styles/       # app.css — light/dark via prefers-color-scheme
+└── styles/       # app.css — Material 3 color roles (terracotta seed), light/dark via prefers-color-scheme
 ```
 
 ## UI
 
 - **Sign-in** — the user first pastes a bearer token. The UI calls `GET /api/v1/me/entitlements` with it; only a 200 unlocks the app (the backend resolves the token through the entitlement service). The token is kept in `sessionStorage` for the tab and sent on every call; any later 401 signs the user out. **Sign out** is in the user card. In mock mode the accepted token is `demo-token` (see `MOCK_VALID_TOKENS`).
-- **Sidebar** — client switcher on top, expandable product tree in the middle (each product lists its chats + "New chat"), signed-in user at the bottom. Collapsible; overlay on mobile.
+- **Look** — Material Design 3 (Roboto Flex, M3 color roles generated from the terracotta seed `#C4552F`, tonal surfaces, state layers). Design source: `.superdesign/design-system.md`.
+- **Navigation rail** — "New chat" FAB and the current client's products as destinations.
+- **Chat list pane** — client switcher on top, chat search, the selected product's chats (rename/delete on hover), signed-in user at the bottom. The rail's menu button hides the pane; below 768px rail + pane become a modal drawer opened from the top app bar.
 - **Chat window** — selecting a product opens a new chat scoped to that client/product; the first message creates the conversation. Answers stream in token by token with markdown and source citations; **Stop** cancels.
 - **URL = scope** — `/c/{clientId}/p/{productId}/{conversationId}`.
 
