@@ -326,7 +326,7 @@ Implemented in `frontend/` — see [frontend/README.md](../frontend/README.md).
 └────────────────────────┴─────────────────────────────────────────────┘
 ```
 
-- **Sidebar:** client switcher on top, expandable product tree in the middle, signed-in user at the bottom. Each product expands to "New chat" plus its conversations. The client list and products come from `/me/entitlements`. The sidebar collapses, and becomes an overlay on mobile.
+- **Navigation (Material 3):** a navigation rail with a "New chat" FAB and the current client's products, next to a chat list pane with the client switcher, chat search, the selected product's conversations and the signed-in user. The client list and products come from `/me/entitlements`. The pane collapses; on mobile rail + pane become a modal drawer. (The sketch above shows the earlier tree layout.)
 - Selecting a product opens a new chat window for that client/product; the first message creates the conversation.
 - Selected scope lives in the URL (`/c/{clientId}/p/{productId}/{conversationId}`) so links are shareable/bookmarkable (still guarded by entitlements).
 - A conversation never changes scope; starting a chat in another product = new conversation.

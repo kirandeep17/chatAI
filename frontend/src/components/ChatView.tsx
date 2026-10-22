@@ -5,6 +5,8 @@ import type { Message } from '../api/types';
 import { sendMessage, stopStreaming, useIsStreaming } from '../hooks/chat';
 import { keys, useConversations, useMessages, useScopeNames } from '../hooks/queries';
 import { Composer } from './Composer';
+import { Icon } from './Icon';
+import { useOpenNav } from './Layout';
 import { MessageList } from './MessageList';
 
 const SUGGESTIONS = [
@@ -22,6 +24,7 @@ export function ChatView() {
   const { data: messages, isLoading, isError } = useMessages(clientId, productId, conversationId);
   const { data: conversations } = useConversations(clientId, productId);
   const streaming = useIsStreaming(conversationId);
+  const openNav = useOpenNav();
 
   if (client && !product) {
     return <div className="center-note">You are not entitled to this product.</div>;
@@ -46,9 +49,14 @@ export function ChatView() {
 
   return (
     <section className="chat">
-      <header className="chat__header">
-        <span className="chat__scope">{scopeLabel}</span>
-        {title && <span className="chat__title">{title}</span>}
+      <header className="topbar">
+        <button className="icon-button topbar__menu" onClick={openNav} aria-label="Open navigation">
+          <Icon name="menu" size={20} />
+        </button>
+        <div className="topbar__text">
+          <h1 className="topbar__title">{title ?? 'New chat'}</h1>
+          <span className="topbar__scope">{scopeLabel}</span>
+        </div>
       </header>
 
       <div className="chat__scroll">
@@ -58,7 +66,10 @@ export function ChatView() {
           <div className="center-note">Loading…</div>
         ) : empty ? (
           <div className="welcome">
-            <h1>What can I help you with?</h1>
+            <span className="welcome__icon" aria-hidden="true">
+              <Icon name="sparkle" size={28} />
+            </span>
+            <h2>What can I help you with?</h2>
             <p>
               Ask anything about <strong>{product?.name}</strong> for <strong>{client?.name}</strong>.
             </p>
@@ -78,6 +89,7 @@ export function ChatView() {
       <div className="chat__composer">
         <Composer
           placeholder={product ? `Message ${product.name}…` : 'Message…'}
+          scope={scopeLabel}
           streaming={streaming}
           disabled={!product}
           onSend={(t) => void send(t)}

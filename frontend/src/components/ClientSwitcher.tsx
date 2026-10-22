@@ -23,12 +23,11 @@ export function ClientSwitcher({ clients, current }: { clients: Client[]; curren
         aria-haspopup="listbox"
         aria-expanded={open}
       >
-        <span className="avatar avatar--client">{current ? initials(current.name) : '?'}</span>
         <span className="client-switcher__text">
           <span className="client-switcher__label">Client</span>
           <span className="client-switcher__name">{current?.name ?? 'Select a client'}</span>
         </span>
-        <Icon name="chevronUpDown" />
+        <Icon name="chevronDown" size={18} />
       </button>
       {open && (
         <ul className="menu" role="listbox" aria-label="Clients">
@@ -43,7 +42,7 @@ export function ClientSwitcher({ clients, current }: { clients: Client[]; curren
                   navigate(`/c/${c.id}`);
                 }}
               >
-                <span className="avatar avatar--client avatar--sm">{initials(c.name)}</span>
+                <span className="avatar avatar--sm">{initials(c.name)}</span>
                 <span className="menu__text">
                   {c.name}
                   <small>

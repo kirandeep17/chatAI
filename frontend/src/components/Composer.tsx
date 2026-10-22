@@ -3,13 +3,15 @@ import { Icon } from './Icon';
 
 interface Props {
   placeholder: string;
+  /** "Client · Product" this chat is bound to, shown as a chip. */
+  scope: string;
   streaming: boolean;
   disabled?: boolean;
   onSend: (text: string) => void;
   onStop: () => void;
 }
 
-export function Composer({ placeholder, streaming, disabled, onSend, onStop }: Props) {
+export function Composer({ placeholder, scope, streaming, disabled, onSend, onStop }: Props) {
   const [text, setText] = useState('');
   const ref = useRef<HTMLTextAreaElement>(null);
 
@@ -51,15 +53,18 @@ export function Composer({ placeholder, streaming, disabled, onSend, onStop }: P
         }}
         autoFocus
       />
-      {streaming ? (
-        <button type="button" className="composer__button" onClick={onStop} aria-label="Stop generating">
-          <Icon name="stop" />
-        </button>
-      ) : (
-        <button type="submit" className="composer__button" disabled={!text.trim() || disabled} aria-label="Send">
-          <Icon name="send" />
-        </button>
-      )}
+      <div className="composer__row">
+        {scope && <span className="chip">{scope}</span>}
+        {streaming ? (
+          <button type="button" className="composer__button" onClick={onStop} aria-label="Stop generating">
+            <Icon name="stop" />
+          </button>
+        ) : (
+          <button type="submit" className="composer__button" disabled={!text.trim() || disabled} aria-label="Send">
+            <Icon name="send" />
+          </button>
+        )}
+      </div>
     </form>
   );
 }
