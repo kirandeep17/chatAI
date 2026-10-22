@@ -17,7 +17,7 @@
         "frontend/src/components/Icon.tsx"
       ],
       "fingerprints": {
-        ".superdesign/design-system.md": "c5bd70863fdce47a7fcd9b459d45bf0a4734a6f22543ee7b512ec983a480c7e4",
+        ".superdesign/design-system.md": "4682426d19f50bb9ec4e37d28295d161d2641b80416f093e3d1f747377069acc",
         "frontend/src/styles/app.css": "ea96394a2d729ee33d44a7ecb36e599265b5f515df46f491066b3765a6df71e2",
         "frontend/src/components/Sidebar.tsx": "a75d3d2ad51aabf7bd6d4d9d056a848bae2c8ac2b78bb7927885a9de49237c4a",
         "frontend/src/components/ProductList.tsx": "0e816219b59f42eb04283ac1025642df33e9898b1025a9d62c58c8bc424feaf2",
@@ -33,13 +33,13 @@
           "currentVersion": 1
         },
         "2cde720f-4a75-467b-9f92-888a72e84518": {
-          "title": "chatAI - Warm Terracotta Editorial Redesign",
-          "visualDirection": "warm terracotta editorial",
+          "title": "chatAI - Material Design 3 Redesign",
+          "visualDirection": "Material 3, terracotta seed (v1 = warm terracotta editorial)",
           "parentDraftId": "6537b697-97a6-4ef5-8147-f5575f6641e3",
-          "currentVersion": 1
+          "currentVersion": 2
         }
       },
-      "updatedAt": "2026-10-22T20:52:19.634876+00:00"
+      "updatedAt": "2026-10-22T21:00:18.204963+00:00"
     }
   }
 }
