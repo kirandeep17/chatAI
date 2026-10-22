@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "targets": {
+    "/c/:clientId/p/:productId/:conversationId": {
+      "targetKind": "existing-ui",
+      "projectId": "628cb4ca-c975-43aa-9bfe-3d1b64b669fe",
+      "baselineDraftId": "6537b697-97a6-4ef5-8147-f5575f6641e3",
+      "activeDraftId": "2cde720f-4a75-467b-9f92-888a72e84518",
+      "designSystemPath": ".superdesign/design-system.md",
+      "contextFiles": [
+        ".superdesign/design-system.md",
+        "frontend/src/styles/app.css",
+        "frontend/src/components/Sidebar.tsx",
+        "frontend/src/components/ProductList.tsx:68",
+        "frontend/src/components/MessageList.tsx",
+        "frontend/src/components/Composer.tsx:29",
+        "frontend/src/components/Icon.tsx"
+      ],
+      "fingerprints": {
+        ".superdesign/design-system.md": "c5bd70863fdce47a7fcd9b459d45bf0a4734a6f22543ee7b512ec983a480c7e4",
+        "frontend/src/styles/app.css": "ea96394a2d729ee33d44a7ecb36e599265b5f515df46f491066b3765a6df71e2",
+        "frontend/src/components/Sidebar.tsx": "a75d3d2ad51aabf7bd6d4d9d056a848bae2c8ac2b78bb7927885a9de49237c4a",
+        "frontend/src/components/ProductList.tsx": "0e816219b59f42eb04283ac1025642df33e9898b1025a9d62c58c8bc424feaf2",
+        "frontend/src/components/MessageList.tsx": "9596ae028067e4af1efad62556afc5245400fa03935af85a551202ca95c9607a",
+        "frontend/src/components/Composer.tsx": "97ea1851c26072b2b2af30c9b6a5c2fdfb5ca20318c9a76e846f4e58976ce480",
+        "frontend/src/components/Icon.tsx": "82a36e97062ad2f8d9548c5652a911d04d57635a28483d4a77a2c79c23aced06"
+      },
+      "components": [],
+      "drafts": {
+        "6537b697-97a6-4ef5-8147-f5575f6641e3": {
+          "title": "chatAI - Desktop Chat View (baseline)",
+          "visualDirection": "current UI reproduction",
+          "currentVersion": 1
+        },
+        "2cde720f-4a75-467b-9f92-888a72e84518": {
+          "title": "chatAI - Warm Terracotta Editorial Redesign",
+          "visualDirection": "warm terracotta editorial",
+          "parentDraftId": "6537b697-97a6-4ef5-8147-f5575f6641e3",
+          "currentVersion": 1
+        }
+      },
+      "updatedAt": "2026-10-22T20:52:19.634876+00:00"
+    }
+  }
+}
