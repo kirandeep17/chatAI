@@ -1,0 +1,23 @@
+app:
+  # Fully qualified name works too, e.g. MY_DB.MY_SCHEMA.QA_PERF_TEST_CM_PS_TABLEAU_DATA
+  table: ${SNOWFLAKE_TABLE:QA_PERF_TEST_CM_PS_TABLEAU_DATA}
+
+spring:
+  datasource:
+    # e.g. jdbc:snowflake://<account_identifier>.snowflakecomputing.com/
+    url: ${SNOWFLAKE_JDBC_URL}
+    username: ${SNOWFLAKE_USER}
+    driver-class-name: net.snowflake.client.api.driver.SnowflakeDriver
+    hikari:
+      maximum-pool-size: 2
+      data-source-properties:
+        # Key-pair auth: path to your PKCS#8 private key (.p8)
+        private_key_file: ${SNOWFLAKE_PRIVATE_KEY_FILE}
+        # Uncomment only if the private key is encrypted:
+        # private_key_pwd: ${SNOWFLAKE_PRIVATE_KEY_PASSPHRASE}
+        db: ${SNOWFLAKE_DATABASE}
+        schema: ${SNOWFLAKE_SCHEMA}
+        warehouse: ${SNOWFLAKE_WAREHOUSE}
+        role: ${SNOWFLAKE_ROLE:}
+        # JSON result format avoids the Arrow/--add-opens issue on Java 17+
+        JDBC_QUERY_RESULT_FORMAT: JSON
