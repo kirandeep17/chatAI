@@ -1,0 +1,101 @@
+:root {
+  --bg: #f6f7f9;
+  --panel: #ffffff;
+  --text: #1c2330;
+  --muted: #5d6778;
+  --border: #e1e5eb;
+  --accent: #2357d9;
+  --syndicated: #2357d9;
+  --custom: #0f8a6c;
+  --test: #b26a00;
+  --other: #6b7280;
+  --active: #0f8a6c;
+  --inactive: #9aa3b1;
+  --danger: #b42318;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #11151c;
+    --panel: #1a2029;
+    --text: #e6e9ef;
+    --muted: #9aa3b1;
+    --border: #2b333f;
+    --accent: #6d95ff;
+    --syndicated: #6d95ff;
+    --custom: #3cc7a2;
+    --test: #f0a63a;
+    --other: #9aa3b1;
+    --active: #3cc7a2;
+    --inactive: #6b7480;
+    --danger: #ff7b6e;
+  }
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body {
+  margin: 0;
+  font: 14px/1.45 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+.top {
+  display: flex; justify-content: space-between; align-items: center; gap: 16px;
+  padding: 16px 24px; background: var(--panel); border-bottom: 1px solid var(--border);
+}
+h1 { margin: 0; font-size: 20px; }
+.meta { margin: 2px 0 0; color: var(--muted); font-size: 12px; }
+main { padding: 20px 24px 40px; max-width: 1600px; margin: 0 auto; }
+
+button {
+  font: inherit; cursor: pointer; border-radius: 6px; padding: 8px 14px;
+  border: 1px solid var(--accent); background: var(--accent); color: #fff;
+}
+button.secondary { background: transparent; color: var(--accent); }
+button:disabled { opacity: .6; cursor: progress; }
+
+.error {
+  border: 1px solid var(--danger); color: var(--danger); background: var(--panel);
+  padding: 10px 14px; border-radius: 8px; margin-bottom: 16px; white-space: pre-wrap;
+}
+
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin-bottom: 20px; }
+.card {
+  background: var(--panel); border: 1px solid var(--border); border-top: 3px solid var(--c);
+  border-radius: 8px; padding: 14px 16px; cursor: pointer; text-align: left; color: var(--text);
+}
+.card[aria-pressed="true"] { outline: 2px solid var(--c); outline-offset: -1px; }
+.card h2 { margin: 0 0 6px; font-size: 13px; text-transform: uppercase; letter-spacing: .04em; color: var(--c); }
+.card .big { font-size: 28px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.card .big small { font-size: 14px; color: var(--muted); font-weight: 400; }
+.card .sub { color: var(--muted); font-size: 12px; margin-top: 4px; }
+.bar { height: 6px; background: var(--border); border-radius: 3px; margin-top: 8px; overflow: hidden; }
+.bar > span { display: block; height: 100%; background: var(--c); }
+
+.toolbar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 8px; }
+.tabs { display: flex; gap: 4px; flex-wrap: wrap; }
+.tabs button { background: transparent; color: var(--text); border-color: var(--border); padding: 6px 12px; }
+.tabs button[aria-selected="true"] { background: var(--accent); color: #fff; border-color: var(--accent); }
+#search {
+  flex: 1; min-width: 240px; padding: 8px 12px; font: inherit; border-radius: 6px;
+  border: 1px solid var(--border); background: var(--panel); color: var(--text);
+}
+.check { display: flex; gap: 6px; align-items: center; color: var(--muted); }
+.count { color: var(--muted); margin: 8px 0; font-size: 12px; }
+
+.table-wrap { overflow-x: auto; background: var(--panel); border: 1px solid var(--border); border-radius: 8px; }
+table { border-collapse: collapse; width: 100%; }
+th, td { padding: 8px 12px; border-bottom: 1px solid var(--border); text-align: left; vertical-align: top; }
+th { position: sticky; top: 0; background: var(--panel); font-size: 12px; color: var(--muted); cursor: pointer; white-space: nowrap; user-select: none; }
+th[data-dir="asc"]::after { content: " ▲"; }
+th[data-dir="desc"]::after { content: " ▼"; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+td .desc { color: var(--muted); font-size: 12px; }
+tbody tr:hover { background: color-mix(in srgb, var(--accent) 6%, transparent); }
+code { font-size: 12px; }
+mark { background: color-mix(in srgb, var(--test) 35%, transparent); color: inherit; border-radius: 2px; }
+
+.pill { display: inline-block; padding: 1px 8px; border-radius: 999px; font-size: 12px; border: 1px solid var(--c); color: var(--c); white-space: nowrap; }
+.dot { display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; }
+.dot::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--c); }
+.empty { text-align: center; color: var(--muted); padding: 32px; }
+.more { display: block; margin: 12px auto 0; }

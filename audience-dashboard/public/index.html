@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Audience Manager</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <header class="top">
+    <div>
+      <h1>Audience Manager</h1>
+      <p class="meta" id="meta">Loading…</p>
+    </div>
+    <button id="refresh" type="button">Refresh from API</button>
+  </header>
+
+  <main>
+    <div id="error" class="error" hidden></div>
+
+    <section class="cards" id="cards" aria-label="Category summary"></section>
+
+    <section class="toolbar">
+      <div class="tabs" role="tablist" id="tabs"></div>
+      <input id="search" type="search" placeholder="Search display name or provider element ID…" autocomplete="off" />
+      <label class="check"><input type="checkbox" id="activeOnly" /> Active only</label>
+      <button id="export" type="button" class="secondary">Export CSV</button>
+    </section>
+
+    <p class="count" id="count"></p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th data-sort="DisplayName">Display name</th>
+            <th data-sort="ProviderElementId">Provider element ID</th>
+            <th data-sort="Category">Category</th>
+            <th data-sort="IsActive">Status</th>
+            <th data-sort="ActiveIDsCount" class="num">Active IDs</th>
+            <th data-sort="ReceivedIDsCount" class="num">Received IDs</th>
+            <th data-sort="Buyable">Buyable</th>
+            <th data-sort="TaxonomyComplianceStatus">Compliance</th>
+            <th data-sort="LastUpdatedAtUTC">Last updated (UTC)</th>
+          </tr>
+        </thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </div>
+    <button id="more" type="button" class="secondary more" hidden>Show more</button>
+  </main>
+
+  <script type="module" src="/app.js"></script>
+</body>
+</html>
