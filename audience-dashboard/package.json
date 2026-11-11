@@ -1,15 +1,33 @@
 {
   "name": "ttd-audience-dashboard",
-  "private": true,
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Local dashboard for Trade Desk third-party audience segments",
   "type": "module",
+  "license": "MIT",
   "engines": {
     "node": ">=20.12"
   },
+  "bin": {
+    "ttd-audiences": "bin/cli.js"
+  },
+  "files": [
+    "bin/",
+    "lib/",
+    "public/",
+    "server.js",
+    "sample-data.json",
+    ".env.example",
+    "README.md"
+  ],
+  "keywords": [
+    "thetradedesk",
+    "ttd",
+    "audiences",
+    "dashboard"
+  ],
   "scripts": {
-    "start": "node server.js",
-    "dev": "node --watch server.js",
+    "start": "node bin/cli.js",
+    "dev": "node --watch bin/cli.js --no-open",
     "test": "node --test"
   }
 }

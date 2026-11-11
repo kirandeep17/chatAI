@@ -3,52 +3,70 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="dark" />
   <title>Audience Manager</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
   <link rel="stylesheet" href="/styles.css" />
 </head>
 <body>
-  <header class="top">
-    <div>
-      <h1>Audience Manager</h1>
-      <p class="meta" id="meta">Loading…</p>
-    </div>
-    <button id="refresh" type="button">Refresh from API</button>
-  </header>
+  <div class="app" id="app">
+    <!-- Icon rail -->
+    <nav class="rail" aria-label="Primary">
+      <a class="rail-logo" href="#/" title="Audience Manager">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.6" fill="currentColor"/></svg>
+      </a>
+      <div class="rail-items" id="railItems"></div>
+      <div class="rail-bottom">
+        <button class="rail-btn" id="railRefresh" title="Refresh from API" aria-label="Refresh from API">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11a8 8 0 1 0-2.3 5.7"/><path d="M20 4v7h-7"/></svg>
+        </button>
+      </div>
+    </nav>
 
-  <main>
-    <div id="error" class="error" hidden></div>
+    <!-- Secondary sidebar -->
+    <aside class="side" id="side">
+      <div class="side-head">
+        <span class="side-icon">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 19a5.5 5.5 0 0 1 11 0"/><circle cx="17" cy="9.5" r="2.4"/><path d="M15.5 14.6A4.5 4.5 0 0 1 21 19"/></svg>
+        </span>
+        <span class="side-title">Audiences</span>
+        <button class="icon-btn" id="collapse" title="Collapse sidebar" aria-label="Collapse sidebar">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><path d="M9.5 4.5v15"/></svg>
+        </button>
+      </div>
+      <label class="search side-search">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></svg>
+        <input id="sideSearch" type="search" placeholder="Search audiences…" autocomplete="off" />
+      </label>
+      <div class="side-nav" id="sideNav"></div>
+      <div class="side-section">Providers</div>
+      <div class="side-nav providers" id="providerNav"></div>
+    </aside>
 
-    <section class="cards" id="cards" aria-label="Category summary"></section>
-
-    <section class="toolbar">
-      <div class="tabs" role="tablist" id="tabs"></div>
-      <input id="search" type="search" placeholder="Search display name or provider element ID…" autocomplete="off" />
-      <label class="check"><input type="checkbox" id="activeOnly" /> Active only</label>
-      <button id="export" type="button" class="secondary">Export CSV</button>
-    </section>
-
-    <p class="count" id="count"></p>
-
-    <div class="table-wrap">
-      <table>
-        <thead>
-          <tr>
-            <th data-sort="DisplayName">Display name</th>
-            <th data-sort="ProviderElementId">Provider element ID</th>
-            <th data-sort="Category">Category</th>
-            <th data-sort="IsActive">Status</th>
-            <th data-sort="ActiveIDsCount" class="num">Active IDs</th>
-            <th data-sort="ReceivedIDsCount" class="num">Received IDs</th>
-            <th data-sort="Buyable">Buyable</th>
-            <th data-sort="TaxonomyComplianceStatus">Compliance</th>
-            <th data-sort="LastUpdatedAtUTC">Last updated (UTC)</th>
-          </tr>
-        </thead>
-        <tbody id="rows"></tbody>
-      </table>
-    </div>
-    <button id="more" type="button" class="secondary more" hidden>Show more</button>
-  </main>
+    <!-- Main -->
+    <main class="main">
+      <header class="topbar">
+        <button class="icon-btn" id="expand" title="Show sidebar" aria-label="Show sidebar" hidden>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><path d="M9.5 4.5v15"/></svg>
+        </button>
+        <nav class="crumbs" id="crumbs" aria-label="Breadcrumb"></nav>
+        <div class="top-right">
+          <span class="status" id="status"><span class="status-dot"></span><span id="statusText">Loading…</span></span>
+          <button class="top-btn" id="kbd" title="Search (Ctrl K)">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></svg>
+            <span>Ctrl K</span>
+          </button>
+          <button class="top-btn primary" id="refresh">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11a8 8 0 1 0-2.3 5.7"/><path d="M20 4v7h-7"/></svg>
+            <span>Refresh</span>
+          </button>
+        </div>
+      </header>
+      <div class="content" id="view"></div>
+    </main>
+  </div>
 
   <script type="module" src="/app.js"></script>
 </body>
