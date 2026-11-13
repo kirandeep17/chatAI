@@ -1,0 +1,4 @@
+editor/node_modules/
+editor/cm.min.js
+tests/.build/
+__pycache__/
